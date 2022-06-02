@@ -35,7 +35,7 @@ Grafana is an Open Source data visualization tool. We can connect different data
 
 ![alt Grafana Dashboard](https://i2.wp.com/www.infrakloud.com/wp-content/uploads/2019/03/zimbra-grafana-001.png?w=1920&ssl=1)
 
-### Prepare Virtual Networks
+## Prepare Virtual Networks
 
 First we need to create two VNets to deploy Kubernetes Cluster and MySQL Instance. You can create one VNet if you like.
 
@@ -85,7 +85,7 @@ az network vnet peering create --name "Link"$vNet2"To"$vNet1 --resource-group $r
 
 ```
 
-### Deploy Kubernetes Cluster and MySQL Flexible Server
+## Deploy Kubernetes Cluster and MySQL Flexible Server
 Use following script or you can do it in [Azure Portal](https://ms.portal.azure.com/#home).
 
 ```bash
@@ -135,7 +135,7 @@ privateDNSZoneId = $(az network private-dns zone list -g $resourceGroup --query 
 az mysql flexible-server create --resource-group $resourceGroup --name $clusterName --vnet $vNet2 --subnet $mysqlSubnetId --location $location --private-dns-zone $privateDNSZoneId
 ```
 
-### Deploy Prometheus and Grafana
+## Deploy Prometheus and Grafana
 Open [Cloud Shell](https://shell.azure.com) or the Azure CLI.
 
 ```bash
@@ -167,9 +167,9 @@ Open [http://localhost:8080](http://localhost:8080) in your **LOCAL PC**, Use **
 
 ![alt Grafana Dashboard](https://miro.medium.com/max/1400/1*xAyXixl65Hlux1S2yy4Iig.png)
 
-### Manage Grafana Datasources
+## Manage Grafana Datasources
 
-#### Create App registration for Grafana
+### Create App registration for Grafana
 Go to [Azure portal](https://portal.azure.com), search *Azure Active Directory*.
 
 ![alt AAD Overview](images/AAD%20Overview.png)
@@ -198,7 +198,7 @@ Go to **Certificates & secrets**, click on **New client secret**
 ![alt secrets](images/secrets.png)
 Copy the Value when secret is added. It will only show **ONCE**, so make sure you copy the secret to notepad.
 
-#### Create Azure Monitor DataSource
+### Create Azure Monitor DataSource
 
 Go to Grafana dashboard at [http://localhost:8080](http://localhost:8080).
 
@@ -217,7 +217,7 @@ Use following parameters:
 
 Click **Load Subscriptions** and choose the default subscription. Click **Save & test**.
 
-#### Create MySQL Datasource
+### Create MySQL Datasource
 Click **Data sources** on the left navigator of Grafana, click **Add data source**, choose **MySQL**
 ![alt MySQL Datasource](images/mysql-datasource.png)
 Use following parameters:
