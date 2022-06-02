@@ -153,7 +153,6 @@ kubectl create ns monitoring
 helm install prometheus stable/prometheus-operator --namespace monitoring
 ```
 
-### Manage Grafana DataSources
 First, use your **LOCAL PC**, use following command
 ```bash
 kubectl get pod -n monitoring|grep grafana
@@ -168,6 +167,9 @@ Open [http://localhost:8080](http://localhost:8080) in your **LOCAL PC**, Use **
 
 ![alt Grafana Dashboard](https://miro.medium.com/max/1400/1*xAyXixl65Hlux1S2yy4Iig.png)
 
+### Manage Grafana Datasources
+
+#### Create App registration for Grafana
 Go to [Azure portal](https://portal.azure.com), search *Azure Active Directory*.
 
 ![alt AAD Overview](images/AAD%20Overview.png)
@@ -186,4 +188,56 @@ Use following parameters
 
 ![alt New registration](images/register%20an%20application.png)
 
+Go to the new application registered.
+![alt App registration overview](images/application%20overview.png)
+Copy **Application (client) ID** and **Directory (tenant) ID** to your notepad, we will need them later.
+
+Go to **Certificates & secrets**, click on **New client secret**
+![alt Client secrets](images/app%20client%20secrets.png)
+![alt add secrets](images/add%20client%20secret.png)
+![alt secrets](images/secrets.png)
+Copy the Value when secret is added. It will only show **ONCE**, so make sure you copy the secret to notepad.
+
+#### Create Azure Monitor DataSource
+
+Go to Grafana dashboard at [http://localhost:8080](http://localhost:8080).
+
+![alt Grafana Datasource](images/grafana-datasource-1.png)
+
+Click on **Add data source**, choose **Azure Monitor**
+![alt Azure Monitor Datasource](images/azure-monitor-datasource.png)
+
+Use following parameters:
+|Parameter| Value Description|
+|--------|:--------|
+|Azure Cloud| Azure|
+|Directory (tenant) ID| Tenant id copied from App registration overview page|
+|Application (client) ID| Client id copied from App registration overview page|
+|Client Secret| Secret value copied when create new certificate|
+
+Click **Load Subscriptions** and choose the default subscription. Click **Save & test**.
+
+#### Create MySQL Datasource
+Click **Data sources** on the left navigator of Grafana, click **Add data source**, choose **MySQL**
+![alt MySQL Datasource](images/mysql-datasource.png)
+Use following parameters:
+|Parameter|Value|
+|-------|:------|
+|Host| Copy host name from MySQL flexible server page|
+|Database| performance_schema|
+|User| Create a readonly user account, don't use admin|
+|Password| user password |
+
+Leave the rest parameters as default.
+
+## Import MySQL Monitor Dashboard
+![alt Import Dashboard](images/Import%20Dashboard.png)
+
+Use the Code **16311**
+
+![alt Import Dashboard](images/import-dashboard-2.png)
+
+Open the dashboard and choose the database you wish to monitor.
+
+![alt MySQL Monitor](images/MySQL%20Dashboard.png)
 
