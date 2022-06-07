@@ -198,6 +198,20 @@ Go to **Certificates & secrets**, click on **New client secret**
 ![alt secrets](images/secrets.png)
 Copy the Value when secret is added. It will only show **ONCE**, so make sure you copy the secret to notepad.
 
+Go to your scription page, select **Access Control(IAM)**, click **Add role assignment**
+
+![alt Subscription Access Control](images/SubscriptionAccessControl.png)
+
+Select **Reader** in Role page. Click Next.
+
+![alt Reader Role Assignment](images/ReaderRole.png)
+
+Select your application in Members page.
+
+![alt Members](images/Members.png)
+
+Click **Next** and **Review + assign**
+
 ### Create Azure Monitor DataSource
 
 Go to Grafana dashboard at [http://localhost:8080](http://localhost:8080).
