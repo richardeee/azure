@@ -202,7 +202,7 @@ Go to your scription page, select **Access Control(IAM)**, click **Add role assi
 
 ![alt Subscription Access Control](images/SubscriptionAccessControl.png)
 
-Select **Reader** in Role page. Click Next.
+Select **Reader** and **Monitor Reader** in Role page. Click Next.
 
 ![alt Reader Role Assignment](images/ReaderRole.png)
 
